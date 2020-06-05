@@ -1,31 +1,35 @@
-let nextTodoId = 0
+import { v4 as uuid4 } from 'uuid'
+import actionTypes from '../constants/actionTypes'
+
 export const addTodo = text => ({
-  type: 'ADD_TODO',
-  id: nextTodoId++,
-  text
+  type: actionTypes.ADD_TODO,
+  id: uuid4(),
+  text,
 })
 
 export const setVisibilityFilter = filter => ({
-  type: 'SET_VISIBILITY_FILTER',
-  filter
+  type: actionTypes.SET_VISIBILITY_FILTER,
+  filter,
 })
 
 export const toggleAllTodo = () => ({
-  type: 'TOGGLE_ALL_TODO'
+  type: actionTypes.TOGGLE_ALL_TODO,
 })
 
 export const toggleTodo = id => ({
-  type: 'TOGGLE_TODO',
-  id
+  type: actionTypes.TOGGLE_TODO,
+  id,
 })
 
 export const deleteTodo = id => ({
-  type: 'DELETE_TODO',
-  id
+  type: actionTypes.DELETE_TODO,
+  id,
 })
 
-export const VisibilityFilters = {
-  SHOW_ALL: 'SHOW_ALL',
-  SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_ACTIVE: 'SHOW_ACTIVE'
-}
+export const deleteAllTodo = () => ({
+  type: actionTypes.DELETE_ALL_TODO,
+})
+
+export const deleteAllCompletedTodo = () => ({
+  type: actionTypes.DELETE_ALL_COMPLETED_TODO,
+})

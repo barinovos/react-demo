@@ -1,24 +1,23 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { createStore } from 'redux'
+import store from './store'
 import { Provider } from 'react-redux'
 import App from './components/App'
-import rootReducer from './reducers'
 import * as serviceWorker from './serviceWorker'
 // TodoMVC base
 import 'todomvc-common/base.js'
 // CSS
 import 'todomvc-common/base.css'
 import 'todomvc-app-css/index.css'
-
-const store = createStore(rootReducer)
+// App CSS
+import './index.css'
 
 render(
   <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('root')
-);
+)
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

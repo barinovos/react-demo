@@ -1,25 +1,28 @@
+import actionTypes from '../constants/actionTypes'
+
 const todos = (state = [], action) => {
   switch (action.type) {
-    case 'ADD_TODO':
+    case actionTypes.ADD_TODO:
       return [
         ...state,
         {
           id: action.id,
           text: action.text,
-          completed: false
-        }
+          completed: false,
+        },
       ]
-    case 'TOGGLE_ALL_TODO':
+    case actionTypes.TOGGLE_ALL_TODO:
+      return state.map(todo => ({ ...todo, completed: !todo.completed }))
+    case actionTypes.TOGGLE_TODO:
       return state.map(todo =>
-        ({...todo, completed: !todo.completed}))
-    case 'TOGGLE_TODO':
-      return state.map(todo =>
-        (todo.id === action.id)
-          ? {...todo, completed: !todo.completed}
-          : todo
+        todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
       )
-    case 'DELETE_TODO':
+    case actionTypes.DELETE_TODO:
       return state.filter(todo => todo.id !== action.id)
+    case actionTypes.DELETE_ALL_TODO:
+      return []
+    case actionTypes.DELETE_ALL_COMPLETED_TODO:
+      return state.filter(todo => !todo.completed)
     default:
       return state
   }

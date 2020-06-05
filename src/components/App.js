@@ -16,7 +16,9 @@ const App = () => (
       </section>
       <Footer />
     </section>
-    <h2><Logo /></h2>
+    <div className="logo">
+      <Logo />
+    </div>
   </Fragment>
 )
 
