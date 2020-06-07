@@ -1,25 +1,30 @@
 import actionTypes from '../constants/actionTypes'
-import provider from '../utils/provider'
-
-// this is NOT testable
-// const dataProvider = provider.getProvider()
 
 const todos = (state = [], action) => {
   switch (action.type) {
     case actionTypes.ADD_TODO:
-      return provider.getProvider().addTodo(action.text)
+      return [
+        ...state,
+        {
+          id: action.id,
+          text: action.text,
+          completed: false,
+        },
+      ]
     case actionTypes.TOGGLE_ALL_TODO:
-      return provider.getProvider().toggleAllTodo()
+      return state.map(todo => ({ ...todo, completed: !todo.completed }))
     case actionTypes.TOGGLE_TODO:
-      return provider.getProvider().toggleTodo(action.id)
+      return state.map(todo =>
+        todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
+      )
     case actionTypes.DELETE_TODO:
-      return provider.getProvider().deleteTodo(action.id)
+      return state.filter(todo => todo.id !== action.id)
     case actionTypes.DELETE_ALL_TODO:
-      return provider.getProvider().deleteAllTodo()
+      return []
     case actionTypes.DELETE_ALL_COMPLETED_TODO:
-      return provider.getProvider().deleteAllCompletedTodo()
+      return state.filter(todo => !todo.completed)
     default:
-      return provider.getProvider().getTodos()
+      return state
   }
 }
 

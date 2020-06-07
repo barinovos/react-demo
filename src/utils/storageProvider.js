@@ -3,7 +3,7 @@ import { v4 as uuid4 } from 'uuid'
 
 const config = {
   storage: localStorage,
-  asyncTimeout: 100,
+  asyncTimeout: 1000,
 }
 
 const setSessionStorage = () => (config.storage = sessionStorage)

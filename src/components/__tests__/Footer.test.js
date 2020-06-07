@@ -9,6 +9,7 @@ import VisibilityFilters from '../../constants/visibilityFilters'
 const store = {
   todos: [],
   visibilityFilter: 'SHOW_ALL',
+  loading: false,
 }
 
 describe('Footer', () => {

@@ -11,6 +11,7 @@ import Logo from '../Logo'
 const store = {
   todos: [],
   visibilityFilter: 'SHOW_ALL',
+  loading: false,
 }
 
 describe('App', () => {
