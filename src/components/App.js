@@ -3,6 +3,7 @@ import Footer from '../containers/Footer'
 import AddTodo from '../containers/AddTodo'
 import VisibleTodoList from '../containers/VisibleTodoList'
 import Loader from '../containers/Loader'
+import Error from '../containers/Error'
 import Logo from './Logo'
 
 const App = () => (
@@ -21,6 +22,7 @@ const App = () => (
       <Logo />
     </div>
     <Loader />
+    <Error />
   </Fragment>
 )
 

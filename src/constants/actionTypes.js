@@ -3,6 +3,7 @@ import keyMirror from 'keymirror'
 export default keyMirror({
   LOADING: null,
   LOADED: null,
+  ERROR: null,
   // ADD_TODO_REQUEST: null,
   // ADD_TODO_SUCCESS: null,
   // ADD_TODO_ERROR: null,
