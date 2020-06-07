@@ -1,10 +1,7 @@
 import actionTypes from '../constants/actionTypes'
 import provider from '../utils/provider'
 
-// this is NOT testable
-// const dataProvider = provider.getProvider()
-
-const todos = (state = [], action) => {
+const todos = action => {
   switch (action.type) {
     case actionTypes.ADD_TODO:
       return provider.getProvider().addTodo(action.text)
