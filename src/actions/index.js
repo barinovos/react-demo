@@ -1,9 +1,7 @@
-import { v4 as uuid4 } from 'uuid'
 import actionTypes from '../constants/actionTypes'
 
 export const addTodo = text => ({
   type: actionTypes.ADD_TODO,
-  id: uuid4(),
   text,
 })
 
