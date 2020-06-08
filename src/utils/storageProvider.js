@@ -54,6 +54,10 @@ const syncStorageProvider = {
     validateText(text)
     const id = uuid4()
     const todos = getTodos()
+    // check for duplication
+    if (todos.find(t => t.text === text)) {
+      throw new Error('This Todo already exists!')
+    }
     const newTodo = { id, text, completed: false }
     const newTodos = todos.concat(newTodo)
     setData({

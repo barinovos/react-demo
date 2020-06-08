@@ -50,5 +50,8 @@
     "tabWidth": 2,
     "semi": false,
     "singleQuote": true
+  },
+  "devDependencies": {
+    "redux-mock-store": "^1.5.4"
   }
 }

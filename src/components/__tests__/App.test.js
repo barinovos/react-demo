@@ -12,13 +12,16 @@ const store = {
   todos: [],
   visibilityFilter: 'SHOW_ALL',
   loading: false,
+  error: {
+    show: false,
+  },
 }
 
 describe('App', () => {
   test('renders title', () => {
     const { getByText } = render(
       <RenderWithProvider store={store}>
-        <App />
+        <App getTodos={jest.fn()} />
       </RenderWithProvider>
     )
 
@@ -29,7 +32,7 @@ describe('App', () => {
   test('renders elements', () => {
     const wrapper = mount(
       <RenderWithProvider store={store}>
-        <App />
+        <App getTodos={jest.fn()} />
       </RenderWithProvider>
     )
 

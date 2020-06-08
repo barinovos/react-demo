@@ -52,12 +52,17 @@ code {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0,0,0,.3);
+  background: rgba(0,0,0,.1);
   z-index: 1000;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.loader-wrapper img {
+  width: 80px;
+  height: 80px;
 }
 
 .error-wrapper {
@@ -68,8 +73,21 @@ code {
   font-size: 1.2em;
   padding: .5em 1em;
   color: red;
-  background: rgba(0,0,0,.5);
+  background: white;
+  border-radius: .5em;
+  box-shadow: 1px 3px 3px 1px #a0a0a0;
+  margin: .5em;
   font-weight: bold;
+  animation: error-move 1s ease-out;
+}
+
+@keyframes error-move {
+  from {
+    transform: translateY(-100px);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 .footer {
