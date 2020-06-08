@@ -1,6 +1,6 @@
 {
   "isAsyncLocalStorage": true,
   "isRemoteStorage": false,
-  "maxTextLength": 240,
+  "maxTextLength": 30,
   "storageKey": "todo_app_nutanix"
 }

@@ -7,6 +7,7 @@ export default keyMirror({
   // ADD_TODO_REQUEST: null,
   // ADD_TODO_SUCCESS: null,
   // ADD_TODO_ERROR: null,
+  SET_TODOS: null,
   ADD_TODO: null,
   SET_VISIBILITY_FILTER: null,
   TOGGLE_ALL_TODO: null,

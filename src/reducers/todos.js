@@ -1,13 +1,15 @@
 import actionTypes from '../constants/actionTypes'
 
-const todos = (state = [], action) => {
-  switch (action.type) {
+const todos = (state = [], { type, payload }) => {
+  switch (type) {
+    case actionTypes.SET_TODOS:
+      return payload
     case actionTypes.ADD_TODO:
       return [
         ...state,
         {
-          id: action.id,
-          text: action.text,
+          id: payload.id,
+          text: payload.text,
           completed: false,
         },
       ]
@@ -15,10 +17,10 @@ const todos = (state = [], action) => {
       return state.map(todo => ({ ...todo, completed: !todo.completed }))
     case actionTypes.TOGGLE_TODO:
       return state.map(todo =>
-        todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
+        todo.id === payload ? { ...todo, completed: !todo.completed } : todo
       )
     case actionTypes.DELETE_TODO:
-      return state.filter(todo => todo.id !== action.id)
+      return state.filter(todo => todo.id !== payload)
     case actionTypes.DELETE_ALL_TODO:
       return []
     case actionTypes.DELETE_ALL_COMPLETED_TODO:

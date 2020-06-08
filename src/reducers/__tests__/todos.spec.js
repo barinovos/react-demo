@@ -9,8 +9,10 @@ describe('todos reducer', () => {
     expect(
       todos([], {
         type: 'ADD_TODO',
-        text: 'Run the tests',
-        id: 0,
+        payload: {
+          text: 'Run the tests',
+          id: 0,
+        },
       })
     ).toEqual([
       {
@@ -31,8 +33,10 @@ describe('todos reducer', () => {
         ],
         {
           type: 'ADD_TODO',
-          text: 'Use Redux',
-          id: 1,
+          payload: {
+            text: 'Use Redux',
+            id: 1,
+          },
         }
       )
     ).toEqual([
@@ -64,8 +68,10 @@ describe('todos reducer', () => {
         ],
         {
           type: 'ADD_TODO',
-          text: 'Fix the tests',
-          id: 2,
+          payload: {
+            text: 'Fix the tests',
+            id: 2,
+          },
         }
       )
     ).toEqual([
@@ -104,7 +110,7 @@ describe('todos reducer', () => {
         ],
         {
           type: 'TOGGLE_TODO',
-          id: 1,
+          payload: 1,
         }
       )
     ).toEqual([
