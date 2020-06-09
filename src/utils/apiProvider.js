@@ -1,2 +1,2 @@
 // TODO: implement it
-export default {}
+export default () => {}

@@ -6,6 +6,7 @@ import TodoList from '../components/TodoList'
 import Logo from './Logo'
 import Error from './Error'
 import AddTodo from './AddTodo'
+import Loader from './Loader'
 
 let provider
 
@@ -20,29 +21,25 @@ export default class App extends Component {
     super(props)
 
     provider = storageProvider.getProvider()
-    try {
-      const todos = provider.getTodos()
-      this.state = {
-        todos,
-        filter: FILTER.SHOW_ALL,
-        error: {
-          show: false,
-        },
-      }
-    } catch ({ message }) {
-      this.state = {
-        todos: [],
-        filter: FILTER.SHOW_ALL,
-        error: {
-          show: true,
-          message,
-        },
-      }
+    this.state = {
+      todos: [],
+      filter: FILTER.SHOW_ALL,
+      error: {
+        show: false,
+      },
+      loading: true,
     }
+    provider
+      .getTodos()
+      .then(todos => {
+        this.setState({ todos, loading: false })
+      })
+      .catch(({ message }) => this.showError(message))
   }
 
   showError = message => {
     this.setState({
+      loading: false,
       error: {
         show: true,
         message,
@@ -73,57 +70,69 @@ export default class App extends Component {
   }
 
   deleteTodo = id => {
-    try {
-      const todos = provider.deleteTodo(id)
-      this.setState({
-        todos,
+    this.setState({ loading: true })
+    provider
+      .deleteTodo(id)
+      .then(todos => {
+        this.setState({ todos, loading: false })
       })
-    } catch ({ message }) {
-      this.showError(message)
-    }
+      .catch(({ message }) => this.showError(message))
   }
 
   deleteAllTodo = () => {
-    const todos = provider.deleteAllTodo()
-    this.setState({ todos })
+    this.setState({ loading: true })
+    provider
+      .deleteAllTodo()
+      .then(todos => {
+        this.setState({ todos, loading: false })
+      })
+      .catch(({ message }) => this.showError(message))
   }
 
   deleteAllCompletedTodo = () => {
-    const todos = provider.deleteAllCompletedTodo()
-    this.setState({ todos })
+    this.setState({ loading: true })
+    provider
+      .deleteAllCompletedTodo()
+      .then(todos => {
+        this.setState({ todos, loading: false })
+      })
+      .catch(({ message }) => this.showError(message))
   }
 
   toggleTodo = id => {
-    try {
-      const todos = provider.toggleTodo(id)
-      this.setState({
-        todos,
+    this.setState({ loading: true })
+    provider
+      .toggleTodo(id)
+      .then(todos => {
+        this.setState({ todos, loading: false })
       })
-    } catch ({ message }) {
-      this.showError(message)
-    }
+      .catch(({ message }) => this.showError(message))
   }
 
   toggleAllTodo = () => {
-    const todos = provider.toggleAllTodo()
-    this.setState({ todos })
+    this.setState({ loading: true })
+    provider
+      .toggleAllTodo()
+      .then(todos => {
+        this.setState({ todos, loading: false })
+      })
+      .catch(({ message }) => this.showError(message))
   }
 
   addTodo = text => {
-    try {
-      const todos = provider.addTodo(text)
-      this.setState({
-        todos,
+    this.setState({ loading: true })
+    provider
+      .addTodo(text)
+      .then(todos => {
+        this.setState({ todos, loading: false })
       })
-    } catch ({ message }) {
-      this.showError(message)
-    }
+      .catch(({ message }) => this.showError(message))
   }
 
   changeFilter = filter => this.setState({ filter })
 
   render() {
-    const { todos, filter, error } = this.state
+    const { todos, filter, error, loading } = this.state
     return (
       <Fragment>
         <section className="todoapp">
@@ -150,6 +159,7 @@ export default class App extends Component {
         <div className="logo">
           <Logo />
         </div>
+        <Loader loading={loading} />
         <Error show={error.show} message={error.message} />
       </Fragment>
     )

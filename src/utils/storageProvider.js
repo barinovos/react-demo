@@ -1,22 +1,22 @@
-// import { Promise } from 'bluebird'
+import { Promise } from 'bluebird'
 import { v4 as uuid4 } from 'uuid'
 
 const config = {
   storage: localStorage,
-  MAX_TEXT_LENGTH: 20,
-  KEY: 'todo_app_nutanix',
+  asyncTimeout: 1000,
 }
 
 const setSessionStorage = () => (config.storage = sessionStorage)
 
 const setLocalStorage = () => (config.storage = localStorage)
 
-const getData = () => JSON.parse(config.storage.getItem(config.KEY)) || {}
+const getData = () =>
+  JSON.parse(config.storage.getItem(config.storageKey)) || {}
 
 const setData = data =>
   data &&
   config.storage.setItem(
-    config.KEY,
+    config.storageKey,
     JSON.stringify({
       ...getData(),
       ...data,
@@ -32,9 +32,9 @@ const validateText = text => {
   if (!text) {
     throw new Error('TODO text is required!')
   }
-  if (text.length > config.MAX_TEXT_LENGTH) {
+  if (text.length > config.maxTextLength) {
     throw new Error(
-      `Text exceeds the max length of ${config.MAX_TEXT_LENGTH} symbols!`
+      `Text exceeds the max length of ${config.maxTextLength} symbols!`
     )
   }
 }
@@ -48,7 +48,7 @@ const validateId = id => {
   }
 }
 
-const storageProvider = {
+const syncStorageProvider = {
   getTodos,
   addTodo: text => {
     validateText(text)
@@ -112,8 +112,37 @@ const storageProvider = {
     })
     return newTodos
   },
-  setLocalStorage,
   setSessionStorage,
+  setLocalStorage,
 }
 
-export default storageProvider
+const asyncStorageProvider = Object.keys(syncStorageProvider).reduce(
+  (provider, key) => {
+    provider[key] = (...params) =>
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          try {
+            const response = syncStorageProvider[key](...params)
+            resolve(response)
+          } catch (e) {
+            reject(e)
+          }
+        }, config.asyncTimeout)
+      })
+    return provider
+  },
+  {}
+)
+
+const getStorageProvider = ({
+  maxTextLength,
+  storageKey,
+  isAsyncLocalStorage,
+}) => {
+  config.maxTextLength = maxTextLength
+  config.storageKey = storageKey
+
+  return isAsyncLocalStorage ? asyncStorageProvider : syncStorageProvider
+}
+
+export default getStorageProvider

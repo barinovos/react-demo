@@ -1,14 +1,14 @@
 import apiProvider from './apiProvider'
 import storageProvider from './storageProvider'
+const config = require('../config.json')
 
-const config = {
-  useLocal: true,
-}
+export const useRemoteProvider = () => (config.isRemoteStorage = true)
 
-export const useRemoteProvider = () => (config.useLocal = false)
-
-export const useLocalProvider = () => (config.useLocal = true)
+export const useLocalProvider = () => (config.isRemoteStorage = false)
 
 export default {
-  getProvider: () => (config.useLocal ? storageProvider : apiProvider),
+  getProvider: () =>
+    config.isRemoteStorage ? apiProvider(config) : storageProvider(config),
+  useRemoteProvider,
+  useLocalProvider,
 }
