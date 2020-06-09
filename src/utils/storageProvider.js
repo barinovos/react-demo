@@ -49,15 +49,21 @@ const validateId = id => {
 }
 
 const storageProvider = {
+  getTodos,
   addTodo: text => {
     validateText(text)
     const id = uuid4()
     const todos = getTodos()
+    // check for duplication
+    if (todos.find(t => t.text === text)) {
+      throw new Error('This Todo already exists!')
+    }
     const newTodo = { id, text, completed: false }
+    const newTodos = todos.concat(newTodo)
     setData({
-      todos: todos.concat(newTodo),
+      todos: newTodos,
     })
-    return newTodo
+    return newTodos
   },
   toggleTodo: id => {
     validateId(id)

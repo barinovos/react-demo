@@ -1,9 +1,11 @@
 import React, { Fragment, Component } from 'react'
 import keyMirror from 'keymirror'
-import { v4 as uuid } from 'uuid'
+import storageProvider from '../utils/provider'
 import Footer from '../components/Footer'
 import TodoList from '../components/TodoList'
 import Logo from './Logo'
+
+let provider
 
 export const FILTER = keyMirror({
   SHOW_ALL: null,
@@ -12,9 +14,14 @@ export const FILTER = keyMirror({
 })
 
 export default class App extends Component {
-  state = {
-    todos: [],
-    filter: FILTER.SHOW_ALL,
+  constructor(props) {
+    super(props)
+
+    provider = storageProvider.getProvider()
+    this.state = {
+      todos: provider.getTodos(),
+      filter: FILTER.SHOW_ALL,
+    }
   }
 
   getVisibleTodos = () => {
@@ -33,44 +40,39 @@ export default class App extends Component {
   }
 
   deleteTodo = id => {
-    this.setState(prev => ({
-      todos: prev.todos.filter(t => t.id !== id),
-    }))
+    const todos = provider.deleteTodo(id)
+    this.setState({
+      todos,
+    })
   }
 
   deleteAllTodo = () => {
-    this.setState({ todos: [] })
+    const todos = provider.deleteAllTodo()
+    this.setState({ todos })
   }
 
   deleteAllCompletedTodo = () => {
-    this.setState(prev => ({
-      todos: prev.todos.filter(t => !t.completed),
-    }))
+    const todos = provider.deleteAllCompletedTodo()
+    this.setState({ todos })
   }
 
   toggleTodo = id => {
-    this.setState(prev => ({
-      todos: prev.todos.map(t =>
-        t.id === id ? { ...t, completed: !t.completed } : t
-      ),
-    }))
+    const todos = provider.toggleTodo(id)
+    this.setState({
+      todos,
+    })
   }
 
   toggleAllTodo = () => {
-    const isAllCompleted = this.state.todos.every(t => t.completed)
-    this.setState(prev => ({
-      todos: prev.todos.map(t => ({ ...t, completed: !isAllCompleted })),
-    }))
+    const todos = provider.toggleAllTodo()
+    this.setState({ todos })
   }
 
   addTodo = text => {
-    this.setState(prev => ({
-      todos: prev.todos.concat({
-        id: uuid(),
-        text,
-        completed: false,
-      }),
-    }))
+    const todos = provider.addTodo(text)
+    this.setState({
+      todos,
+    })
   }
 
   changeFilter = filter => this.setState({ filter })
