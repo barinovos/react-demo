@@ -4,6 +4,8 @@ import storageProvider from '../utils/provider'
 import Footer from '../components/Footer'
 import TodoList from '../components/TodoList'
 import Logo from './Logo'
+import Error from './Error'
+import AddTodo from './AddTodo'
 
 let provider
 
@@ -18,10 +20,41 @@ export default class App extends Component {
     super(props)
 
     provider = storageProvider.getProvider()
-    this.state = {
-      todos: provider.getTodos(),
-      filter: FILTER.SHOW_ALL,
+    try {
+      const todos = provider.getTodos()
+      this.state = {
+        todos,
+        filter: FILTER.SHOW_ALL,
+        error: {
+          show: false,
+        },
+      }
+    } catch ({ message }) {
+      this.state = {
+        todos: [],
+        filter: FILTER.SHOW_ALL,
+        error: {
+          show: true,
+          message,
+        },
+      }
     }
+  }
+
+  showError = message => {
+    this.setState({
+      error: {
+        show: true,
+        message,
+      },
+    })
+    setTimeout(() => {
+      this.setState({
+        error: {
+          show: false,
+        },
+      })
+    }, 5000)
   }
 
   getVisibleTodos = () => {
@@ -40,10 +73,14 @@ export default class App extends Component {
   }
 
   deleteTodo = id => {
-    const todos = provider.deleteTodo(id)
-    this.setState({
-      todos,
-    })
+    try {
+      const todos = provider.deleteTodo(id)
+      this.setState({
+        todos,
+      })
+    } catch ({ message }) {
+      this.showError(message)
+    }
   }
 
   deleteAllTodo = () => {
@@ -57,10 +94,14 @@ export default class App extends Component {
   }
 
   toggleTodo = id => {
-    const todos = provider.toggleTodo(id)
-    this.setState({
-      todos,
-    })
+    try {
+      const todos = provider.toggleTodo(id)
+      this.setState({
+        todos,
+      })
+    } catch ({ message }) {
+      this.showError(message)
+    }
   }
 
   toggleAllTodo = () => {
@@ -69,39 +110,26 @@ export default class App extends Component {
   }
 
   addTodo = text => {
-    const todos = provider.addTodo(text)
-    this.setState({
-      todos,
-    })
+    try {
+      const todos = provider.addTodo(text)
+      this.setState({
+        todos,
+      })
+    } catch ({ message }) {
+      this.showError(message)
+    }
   }
 
   changeFilter = filter => this.setState({ filter })
 
   render() {
-    const { todos, filter } = this.state
-    let input
-
+    const { todos, filter, error } = this.state
     return (
       <Fragment>
         <section className="todoapp">
           <header>
             <h1>Nutanix Todo</h1>
-            <form
-              onSubmit={e => {
-                e.preventDefault()
-                if (!input.value.trim()) {
-                  return
-                }
-                this.addTodo(input.value)
-                input.value = ''
-              }}
-            >
-              <input
-                className="new-todo"
-                ref={node => (input = node)}
-                placeholder="What needs to be done?"
-              />
-            </form>
+            <AddTodo addTodo={this.addTodo} />
           </header>
           <section className="main">
             <TodoList
@@ -122,6 +150,7 @@ export default class App extends Component {
         <div className="logo">
           <Logo />
         </div>
+        <Error show={error.show} message={error.message} />
       </Fragment>
     )
   }

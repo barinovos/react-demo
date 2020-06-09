@@ -3,7 +3,7 @@ import { v4 as uuid4 } from 'uuid'
 
 const config = {
   storage: localStorage,
-  MAX_TEXT_LENGTH: 240,
+  MAX_TEXT_LENGTH: 20,
   KEY: 'todo_app_nutanix',
 }
 
