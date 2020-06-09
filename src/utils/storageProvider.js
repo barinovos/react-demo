@@ -74,7 +74,8 @@ const storageProvider = {
   },
   toggleAllTodo: () => {
     const todos = getTodos()
-    const newTodos = todos.map(t => ({ ...t, completed: !t.completed }))
+    const isAllCompleted = todos.every(t => t.completed)
+    const newTodos = todos.map(t => ({ ...t, completed: !isAllCompleted }))
     setData({
       todos: newTodos,
     })

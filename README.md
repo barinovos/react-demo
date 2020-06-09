@@ -10,15 +10,21 @@ approaching `localStorage`, API calls, and no DB at all
 
 `master` - Simple Redux in-browser app, no storage ("good" example, but not so much)
 
-`local-storage` - Master + Async layer to save changes within localStorage (bad example)
+`no-redux` - In-browser app without Redux
 
-`thunk` - local-storage branch + redux-thunk middleware applied
+`no-redux-storage` - App without Redux with sync local storage (+error handling)
 
-`sage` - the same as previuos, but with Saga instead of Thunk
+`no-redux-storage-async` - App without Redux with async local storage (+loader)
 
-`old-school` - cut from master with no Redux usage at all (bad example)
+`local-storage` - Sync layer to save changes within localStorage
 
-`apollo` - Apollo GraphQL branch (with API work, tbd...)
+`local-storage-middleware` - local-storage branch with middleware example
+
+`async-storage` - Async layer to save changes within localStorage (not working)
+
+`redux-thunk` - Fully functional with redux-thunk middleware
+
+`redux-saga` - Fully functional with redux-saga middleware
 
 ## Available Scripts
 
