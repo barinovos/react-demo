@@ -1,28 +1,57 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import FilterLink from '../containers/FilterLink'
-import ActionsPanel from '../containers/ActionsPanel'
-import VisibilityFilters from '../constants/visibilityFilters'
+import Link from './Link'
+import ActionsPanel from './ActionsPanel'
+import { FILTER } from './App'
 
-const Footer = ({ count }) => (
+const Footer = ({
+  count,
+  filter,
+  onLinkClick,
+  deleteAllTodo,
+  deleteAllCompletedTodo,
+}) => (
   <footer className="footer">
     <span className="todo-count">
       <strong>{count} </strong>
       <span>item(s) left</span>
     </span>
     <ul className="filters">
-      <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
-      <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
-      <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>
+      <Link
+        filter={FILTER.SHOW_ALL}
+        active={filter === FILTER.SHOW_ALL}
+        onClick={() => onLinkClick(FILTER.SHOW_ALL)}
+      >
+        All
+      </Link>
+      <Link
+        filter={FILTER.SHOW_ACTIVE}
+        active={filter === FILTER.SHOW_ACTIVE}
+        onClick={() => onLinkClick(FILTER.SHOW_ACTIVE)}
+      >
+        Active
+      </Link>
+      <Link
+        filter={FILTER.SHOW_COMPLETED}
+        active={filter === FILTER.SHOW_COMPLETED}
+        onClick={() => onLinkClick(FILTER.SHOW_COMPLETED)}
+      >
         Completed
-      </FilterLink>
+      </Link>
     </ul>
-    <ActionsPanel />
+    <ActionsPanel
+      deleteAllTodo={deleteAllTodo}
+      deleteAllCompletedTodo={deleteAllCompletedTodo}
+    />
   </footer>
 )
 
 Footer.propTypes = {
   count: PropTypes.number.isRequired,
+  deleteAllTodo: PropTypes.func.isRequired,
+  deleteAllCompletedTodo: PropTypes.func.isRequired,
+  onLinkClick: PropTypes.func.isRequired,
+  filter: PropTypes.string.isRequired,
 }
 
 export default Footer
