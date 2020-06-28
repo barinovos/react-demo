@@ -1,4 +1,4 @@
-import { call, fork, put, takeLatest } from 'redux-saga/effects'
+import { call, spawn, put, takeLatest } from 'redux-saga/effects'
 import actionTypes from '../constants/actionTypes'
 import provider from '../utils/provider'
 import { handleError } from './handleError'
@@ -19,7 +19,7 @@ export function* addTodo(action) {
       },
     })
   } catch (e) {
-    yield fork(handleError, e.message)
+    yield spawn(handleError, e.message)
   }
 }
 

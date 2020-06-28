@@ -6,6 +6,17 @@ Agenda: We take simple TODO app and demonstrate how it can be built
 with/without Redux and how different middleware works with Redux (Thunk, Saga, no middleware)
 approaching `localStorage`, API calls, and no DB at all
 
+## Saga-in-Depth extras
+
+- Undo action
+- No blocking loader
+- Calls concurrency
+- Search with throttling
+- Tags for Todos
+- Routing (with Todo details)
+- Sync tasks with API with Stop option
+- Channels
+
 ## Branches
 
 `master` - Simple Redux in-browser app, no storage ("good" example, but not so much)
