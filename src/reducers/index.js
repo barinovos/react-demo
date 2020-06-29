@@ -4,6 +4,7 @@ import visibilityFilter from './visibilityFilter'
 import loading from './loading'
 import error from './error'
 import congrats from './congrats'
+import syncNowReducer from './syncNow'
 
 export default combineReducers({
   todos,
@@ -11,4 +12,5 @@ export default combineReducers({
   loading,
   error,
   congrats,
+  syncNowState: syncNowReducer,
 })

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Footer from '../containers/Footer'
 import AddTodo from '../containers/AddTodo'
 import VisibleTodoList from '../containers/VisibleTodoList'
+import SyncPanel from '../containers/SyncPanel'
 import Loader from './Loader'
 import Error from './Error'
 import Congrats from './Congrats'
@@ -16,6 +17,7 @@ const App = ({ getTodos, error, loading, congrats }) => {
 
   return (
     <Fragment>
+      <SyncPanel />
       <section className="todoapp">
         <header>
           <h1>Nutanix Todo</h1>

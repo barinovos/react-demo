@@ -41,3 +41,28 @@ export const deleteAllTodo = () => ({
 export const deleteAllCompletedTodo = () => ({
   type: actionTypes.DELETE_ALL_COMPLETED_TODO_REQUEST,
 })
+
+export const syncNow = () => ({
+  type: actionTypes.START_SYNC,
+})
+
+export const cancelSync = () => ({
+  type: actionTypes.STOP_SYNC,
+})
+
+export const syncCancelled = () => ({
+  type: actionTypes.SYNC_CANCELLED,
+})
+
+export const syncSuccess = result => ({
+  type: actionTypes.SYNC_FINISHED,
+  payload: result,
+})
+
+export const syncBg = () => ({
+  type: actionTypes.START_BG_SYNC,
+})
+
+export const cancelSyncBg = () => ({
+  type: actionTypes.CANCEL_BG_SYNC,
+})

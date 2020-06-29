@@ -29,4 +29,17 @@ export default keyMirror({
 
   DELETE_ALL_COMPLETED_TODO_REQUEST: null,
   DELETE_ALL_COMPLETED_TODO_SUCCESS: null,
+
+  START_SYNC: null,
+  STOP_SYNC: null,
+  SYNC_CANCELLED: null,
+  SYNC_FAILED: null,
+  SYNC_FINISHED: null,
+
+  START_BG_SYNC: null,
+  SET_BG_SYNC_PROGRESS: null,
+  CANCEL_BG_SYNC: null,
+  BG_SYNC_DONE: null,
+  BG_SYNC_CANCELLED: null,
+  BG_SYNC_FAILED: null,
 })

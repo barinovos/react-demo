@@ -103,6 +103,18 @@ code {
   }
 }
 
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .footer {
   height: auto;
 }
@@ -110,4 +122,43 @@ code {
 .footer:before {
   height: 20px;
   background: white;
+}
+
+.sync-panel {
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  min-width: 220px;
+  padding: 1em;
+  background: black;
+  color: white;
+  text-align: center;
+}
+
+.sync-panel button {
+  background: green;
+  padding: .5em;
+  border-radius: .5em;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.sync-panel button[disabled] {
+  background: red;
+}
+
+.sync-panel button.cancel {
+  background: #a0a0a0;
+}
+
+.sync-panel .block {
+  margin: 1em 0;
+}
+
+.sync-panel .sync-now {
+  animation: blink 2s ease-out infinite;
+}
+
+.sync-panel p {
+  margin: .2em 0 2em;
 }
