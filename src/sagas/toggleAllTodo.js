@@ -11,7 +11,7 @@ export function* toggleAllTodo() {
       type: actionTypes.TOGGLE_ALL_TODO_SUCCESS,
     })
   } catch (e) {
-    yield fork(handleError, e.message)
+    yield fork(handleError, e)
   }
 }
 

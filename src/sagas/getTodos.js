@@ -9,7 +9,7 @@ export function* getTodos() {
     const todos = yield call(provider.getProvider().getTodos)
     yield put({ type: actionTypes.GET_TODOS_SUCCESS, payload: todos })
   } catch (e) {
-    yield fork(handleError, e.message)
+    yield fork(handleError, e)
   }
 }
 

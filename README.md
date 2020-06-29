@@ -8,13 +8,14 @@ approaching `localStorage`, API calls, and no DB at all
 
 ## Saga-in-Depth extras
 
+- Non-blocking loader
+- Calls concurrency (takeEvery vs takeLatest)
+- Count actions (take and select)
+- Cancellation: sync tasks with API with "stop" option
 - Undo action
-- No blocking loader
-- Calls concurrency
 - Search with throttling
 - Tags for Todos
 - Routing (with Todo details)
-- Sync tasks with API with Stop option
 - Channels
 
 ## Branches

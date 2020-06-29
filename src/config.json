@@ -1,6 +1,8 @@
 {
   "isAsyncLocalStorage": true,
-  "isRemoteStorage": false,
+  "isRemoteStorage": true,
+  "apiURL": "http://localhost:9000",
+  "apiRootRoute": "/api/v1/todos",
   "maxTextLength": 20,
   "storageKey": "todo_app_nutanix"
 }

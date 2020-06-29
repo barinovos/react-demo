@@ -14,7 +14,7 @@ export function* deleteTodo(action) {
       },
     })
   } catch (e) {
-    yield fork(handleError, e.message)
+    yield fork(handleError, e)
   }
 }
 

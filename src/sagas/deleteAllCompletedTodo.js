@@ -11,7 +11,7 @@ export function* deleteAllCompletedTodo() {
       type: actionTypes.DELETE_ALL_COMPLETED_TODO_SUCCESS,
     })
   } catch (e) {
-    yield fork(handleError, e.message)
+    yield fork(handleError, e)
   }
 }
 
