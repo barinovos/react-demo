@@ -46,7 +46,8 @@ code {
   margin-right: 1em;
 }
 
-.loader-wrapper {
+.loader-wrapper,
+.congrats-wrapper{
   position: absolute;
   top: 0;
   right: 0;
@@ -58,6 +59,18 @@ code {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.congrats-wrapper {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.congrats-wrapper .title {
+  color: blue;
+  font-size: 2em;
 }
 
 .loader-wrapper img {

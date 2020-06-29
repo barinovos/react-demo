@@ -3,6 +3,12 @@ import { bindActionCreators } from 'redux'
 import App from '../components/App'
 import { getTodos } from '../actions'
 
+const mapStateToProps = ({ error, loading, congrats }) => ({
+  error,
+  loading,
+  congrats,
+})
+
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
@@ -12,6 +18,6 @@ const mapDispatchToProps = dispatch =>
   )
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(App)

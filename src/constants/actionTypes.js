@@ -4,6 +4,8 @@ export default keyMirror({
   LOADING: null,
   LOADED: null,
   ERROR: null,
+  SHOW_CONGRATS: null,
+  HIDE_CONGRATS: null,
 
   GET_TODOS_REQUEST: null,
   GET_TODOS_SUCCESS: null,

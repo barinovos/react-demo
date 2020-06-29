@@ -3,15 +3,16 @@ import PropTypes from 'prop-types'
 import Footer from '../containers/Footer'
 import AddTodo from '../containers/AddTodo'
 import VisibleTodoList from '../containers/VisibleTodoList'
-import Loader from '../containers/Loader'
-import Error from '../containers/Error'
+import Loader from './Loader'
+import Error from './Error'
+import Congrats from './Congrats'
 import Logo from './Logo'
 
-const App = ({ getTodos }) => {
+const App = ({ getTodos, error, loading, congrats }) => {
   // aka constructor
   useEffect(() => {
     getTodos()
-  })
+  }, []) // eslint-disable-line
 
   return (
     <Fragment>
@@ -28,14 +29,21 @@ const App = ({ getTodos }) => {
       <div className="logo">
         <Logo />
       </div>
-      <Loader />
-      <Error />
+      {loading && <Loader />}
+      {error.show && <Error message={error.message} />}
+      {congrats && <Congrats />}
     </Fragment>
   )
 }
 
 App.propTypes = {
   getTodos: PropTypes.func.isRequired,
+  error: PropTypes.shape({
+    show: PropTypes.bool,
+    message: PropTypes.string,
+  }),
+  loading: PropTypes.bool,
+  congrats: PropTypes.bool,
 }
 
 export default App
