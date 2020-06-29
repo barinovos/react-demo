@@ -70,7 +70,7 @@ app.delete(
       .find({ id })
       .value()
     if (!todo) {
-      res.status(404).send(`ToDo with id ${id} does not exist`)
+      return res.status(404).send(`ToDo with id ${id} does not exist`)
     }
     db.update(todos, items => items.filter(item => item.id !== id)).write()
     res.status(200).send(db.get(todos).value())
@@ -87,7 +87,7 @@ app.put(
       .find({ id })
       .value()
     if (!todo) {
-      res.status(404).send(`ToDo with id ${id} does not exist`)
+      return res.status(404).send(`ToDo with id ${id} does not exist`)
     }
     db.update(todos, items =>
       items.map(item =>
@@ -119,7 +119,7 @@ app.put(
 
 // Delete all items
 app.delete(
-  `${rootRoute}/all`,
+  `${rootRoute}-all`,
   withTimeout((req, res) => {
     db.set(todos, []).write()
     res.status(200).send([])
@@ -128,7 +128,7 @@ app.delete(
 
 // Delete all completed items
 app.delete(
-  `${rootRoute}/all-completed`,
+  `${rootRoute}-all-completed`,
   withTimeout((req, res) => {
     db.update(todos, items => items.filter(item => !item.completed)).write()
     res.status(200).send(db.get(todos).value())

@@ -11,9 +11,9 @@ export default ({ apiURL, apiRootRoute }) => ({
   deleteTodo: id =>
     axios.delete(`${apiURL}${apiRootRoute}/${id}`).then(resp => resp.data),
   deleteAllTodo: text =>
-    axios.delete(`${apiURL}${apiRootRoute}/all`).then(resp => resp.data),
+    axios.delete(`${apiURL}${apiRootRoute}-all`).then(resp => resp.data),
   deleteAllCompletedTodo: () =>
     axios
-      .delete(`${apiURL}${apiRootRoute}/all-completed`)
+      .delete(`${apiURL}${apiRootRoute}-all-completed`)
       .then(resp => resp.data),
 })

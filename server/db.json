@@ -1,23 +1,8 @@
 {
   "todos": [
     {
-      "id": "27e5756a-e865-40f9-91e9-3dd830de94ab",
-      "text": "some good thing",
-      "completed": true
-    },
-    {
-      "id": "2bf94924-2bba-41f4-a990-914e0393300a",
-      "text": "ola la",
-      "completed": true
-    },
-    {
-      "id": "db15b132-87b5-4d1a-80d2-5a42100a767d",
-      "text": "some",
-      "completed": false
-    },
-    {
-      "id": "67c0b644-191f-4d6b-9842-0b16bf25eda8",
-      "text": "some cool s",
+      "id": "bbb8462e-51f2-4a88-9fc4-5382c176019f",
+      "text": "Win a race!",
       "completed": false
     }
   ]
