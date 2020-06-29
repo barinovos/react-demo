@@ -6,6 +6,7 @@ import { watchToggleAllTodo } from './toggleAllTodo'
 import { watchDeleteTodo } from './deleteTodo'
 import { watchDeleteAllTodo } from './deleteAllTodo'
 import { watchDeleteAllCompletedTodo } from './deleteAllCompletedTodo'
+import { handleError } from './handleError'
 
 // notice how we now only export the rootSaga
 // single entry point to start all Sagas at once
@@ -29,7 +30,7 @@ export default function* rootSaga() {
             yield call(saga)
             break
           } catch (e) {
-            console.log(e)
+            yield spawn(handleError, e)
           }
         }
       })
