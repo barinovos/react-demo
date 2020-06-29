@@ -19,6 +19,8 @@ approaching `localStorage`, API calls, and no DB at all
 
 ## Branches
 
+`saga-in-depth` - Based on redux-saga with all Extras from the section above implemented
+
 `master` - Simple Redux in-browser app, no storage ("good" example, but not so much)
 
 `no-redux` - In-browser app without Redux
