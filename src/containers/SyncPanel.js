@@ -3,9 +3,10 @@ import { bindActionCreators } from 'redux'
 import { syncNow, cancelSync, syncBg, cancelSyncBg } from '../actions'
 import SyncPanel from '../components/SyncPanel'
 
-const mapStateToProps = ({ syncNowState }) => ({
+const mapStateToProps = ({ syncNowState, syncTaskStatus }) => ({
   isSyncNow: syncNowState.started,
   isSyncStopped: syncNowState.stopped,
+  syncTaskStatus,
 })
 
 const mapDispatchToProps = dispatch =>

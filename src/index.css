@@ -162,3 +162,10 @@ code {
 .sync-panel p {
   margin: .2em 0 2em;
 }
+
+.sync-panel .progress {
+  margin: 1em 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

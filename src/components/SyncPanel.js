@@ -28,13 +28,19 @@ const SyncPanel = ({
           </p>
         )}
       </div>
-      {/*<div className="block">
-        <button onClick={syncBg}>Run sync task</button>
+      <div className="block">
+        <button
+          onClick={syncBg}
+          disabled={syncTaskStatus && syncTaskStatus.started}
+        >
+          Run sync task
+        </button>
         <button className="cancel" onClick={cancelSyncBg}>
           Cancel
         </button>
         {syncTaskStatus && syncTaskStatus.started ? (
-          <div className="sync-now">
+          <div className="progress">
+            <span>{syncTaskStatus.progress} %</span>
             <input
               type="range"
               readOnly={true}
@@ -44,7 +50,7 @@ const SyncPanel = ({
         ) : (
           <p>There is no sync task yet</p>
         )}
-      </div>*/}
+      </div>
     </div>
   )
 }

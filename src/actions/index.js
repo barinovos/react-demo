@@ -63,6 +63,20 @@ export const syncBg = () => ({
   type: actionTypes.START_BG_SYNC,
 })
 
+export const syncBgCancelled = () => ({
+  type: actionTypes.BG_SYNC_CANCELLED,
+})
+
+export const syncBgProgress = result => ({
+  type: actionTypes.SET_BG_SYNC_PROGRESS,
+  payload: result,
+})
+
+export const syncBgSuccess = result => ({
+  type: actionTypes.BG_SYNC_DONE,
+  payload: result,
+})
+
 export const cancelSyncBg = () => ({
   type: actionTypes.CANCEL_BG_SYNC,
 })

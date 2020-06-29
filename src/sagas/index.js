@@ -9,6 +9,7 @@ import { watchDeleteAllCompletedTodo } from './deleteAllCompletedTodo'
 import { handleError } from './handleError'
 import { watchDailyTarget } from './congrats'
 import { syncNowSaga } from './syncNow'
+import { syncBgSaga } from './syncBg'
 
 // notice how we now only export the rootSaga
 // single entry point to start all Sagas at once
@@ -24,6 +25,7 @@ export default function* rootSaga() {
     watchDeleteAllCompletedTodo,
     watchDailyTarget,
     syncNowSaga,
+    syncBgSaga,
   ]
 
   yield all(
