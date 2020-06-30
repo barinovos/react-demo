@@ -9,6 +9,13 @@ export const addTodo = text => ({
   },
 })
 
+export const addTodoBatch = text => ({
+  type: actionTypes.ADD_TODO_BATCH_REQUEST,
+  payload: {
+    text,
+  },
+})
+
 export const setVisibilityFilter = filter => ({
   type: actionTypes.SET_VISIBILITY_FILTER,
   payload: {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 const SyncPanel = ({
@@ -9,7 +9,17 @@ const SyncPanel = ({
   syncBg,
   cancelSyncBg,
   syncTaskStatus,
+  addTodoBatch,
 }) => {
+  const [randomCount, setRandomCount] = useState(5)
+
+  const onMakeBatchCall = () => {
+    const dateHash = Date.now()
+    ;[...Array(randomCount).keys()].forEach(i =>
+      addTodoBatch(`Rnd ${i}${dateHash}`)
+    )
+  }
+
   return (
     <div className="sync-panel">
       <h2>Sync with remote DB</h2>
@@ -54,6 +64,16 @@ const SyncPanel = ({
       <div className="block block-info">
         <strong>All API calls are now queued</strong>
       </div>
+      <div className="block">
+        <h3>Create random ToDos</h3>
+        <input
+          type="number"
+          placeholder="amount of new ToDos"
+          value={randomCount}
+          onChange={ev => setRandomCount(+ev.target.value)}
+        />
+        <button onClick={onMakeBatchCall}>New {randomCount} ToDos</button>
+      </div>
     </div>
   )
 }
@@ -69,6 +89,7 @@ SyncPanel.propTypes = {
     started: PropTypes.bool,
     progress: PropTypes.number,
   }),
+  addTodoBatch: PropTypes.func,
 }
 
 export default SyncPanel

@@ -48,7 +48,7 @@ code {
 
 .loader-wrapper,
 .congrats-wrapper{
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   width: 120px;
@@ -141,6 +141,16 @@ code {
   border-radius: .5em;
   margin-right: 5px;
   cursor: pointer;
+}
+
+.sync-panel input {
+  margin-right: 15px;
+  min-height: 30px;
+  max-width: 30px;
+  border-radius: .5em;
+  padding-left: 1em;
+  outline: none;
+  border: none;
 }
 
 .sync-panel button[disabled] {

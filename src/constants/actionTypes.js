@@ -11,6 +11,7 @@ export default keyMirror({
   GET_TODOS_SUCCESS: null,
 
   ADD_TODO_REQUEST: null,
+  ADD_TODO_BATCH_REQUEST: null,
   ADD_TODO_SUCCESS: null,
 
   SET_VISIBILITY_FILTER: null,

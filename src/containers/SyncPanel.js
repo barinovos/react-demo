@@ -1,6 +1,12 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { syncNow, cancelSync, syncBg, cancelSyncBg } from '../actions'
+import {
+  syncNow,
+  cancelSync,
+  syncBg,
+  cancelSyncBg,
+  addTodoBatch,
+} from '../actions'
 import SyncPanel from '../components/SyncPanel'
 
 const mapStateToProps = ({ syncNowState, syncTaskStatus }) => ({
@@ -16,6 +22,7 @@ const mapDispatchToProps = dispatch =>
       cancelSync,
       syncBg,
       cancelSyncBg,
+      addTodoBatch,
     },
     dispatch
   )
