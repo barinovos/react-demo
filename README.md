@@ -8,15 +8,13 @@ approaching `localStorage`, API calls, and no DB at all
 
 ## Saga-in-Depth extras
 
-- Non-blocking loader
-- Calls concurrency (takeEvery vs takeLatest)
-- Count actions (take and select)
-- Cancellation: sync tasks with API with "stop" option
-- Undo action
-- Search with throttling
-- Tags for Todos
-- Routing (with Todo details)
-- Channels
+- No blocking loader (Running Tasks In Parallel)
+- Show congrats after 3 added (Pulling future actions)
+- Sync tasks with API with Stop option (Task cancellation)
+- Sync tasks in bg with Progress bar (Polling)
+- Queue the ‘hot’ calls (Channels)
+- Batch job: limit max API calls (Channels)
+- Async search (Recipes -> Throttling)
 
 ## Branches
 
