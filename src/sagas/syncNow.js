@@ -10,7 +10,10 @@ function* sync() {
   } catch (e) {
     yield put({ type: actionTypes.SYNC_FAILED })
   } finally {
-    if (yield cancelled()) yield put(syncCancelled())
+    if (yield cancelled()) {
+      yield call(provider.getProvider().cancelSyncNow)
+      yield put(syncCancelled())
+    }
   }
 }
 

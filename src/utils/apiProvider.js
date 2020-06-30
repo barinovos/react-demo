@@ -1,5 +1,9 @@
 import axios from 'axios'
 
+// https://github.com/axios/axios#cancellation
+const CancelToken = axios.CancelToken
+const source = CancelToken.source()
+
 export default ({ apiURL, apiRootRoute, routes }) => ({
   getTodos: () =>
     axios.get(apiURL + apiRootRoute + routes.todos).then(resp => resp.data),
@@ -29,8 +33,13 @@ export default ({ apiURL, apiRootRoute, routes }) => ({
       .then(resp => resp.data),
   syncNow: () =>
     axios
-      .post(`${apiURL}${apiRootRoute}${routes.sync}`)
+      .post(`${apiURL}${apiRootRoute}${routes.sync}`, null, {
+        cancelToken: source.token,
+      })
       .then(resp => resp.data),
+  // cancel request method
+  cancelSyncNow: () => source.cancel('it was cancelled'),
+  // Background sync task
   startSyncTask: () =>
     axios
       .post(`${apiURL}${apiRootRoute}${routes.syncTask}`)
