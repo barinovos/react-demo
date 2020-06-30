@@ -12,7 +12,7 @@ const loaderReducer = (state = false, { type, payload }) => {
     type.includes('_SUCCESS') ||
     (type === actionTypes.ERROR && payload.show)
   ) {
-    requestsCount--
+    if (requestsCount > 0) requestsCount--
     return Boolean(requestsCount)
   }
   return state

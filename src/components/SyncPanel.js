@@ -51,6 +51,9 @@ const SyncPanel = ({
           <p>There is no sync task yet</p>
         )}
       </div>
+      <div className="block block-info">
+        <strong>All API calls are now queued</strong>
+      </div>
     </div>
   )
 }

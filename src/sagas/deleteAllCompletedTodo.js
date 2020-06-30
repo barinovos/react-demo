@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { call, put, takeLeading } from 'redux-saga/effects'
 import actionTypes from '../constants/actionTypes'
 import provider from '../utils/provider'
 
@@ -11,7 +11,7 @@ export function* deleteAllCompletedTodo() {
 }
 
 export function* watchDeleteAllCompletedTodo() {
-  yield takeLatest(
+  yield takeLeading(
     actionTypes.DELETE_ALL_COMPLETED_TODO_REQUEST,
     deleteAllCompletedTodo
   )

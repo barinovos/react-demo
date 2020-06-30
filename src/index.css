@@ -155,6 +155,14 @@ code {
   margin: 1em 0;
 }
 
+.sync-panel .block.block-info {
+  margin: 0;
+  padding: 1em;
+  background: white;
+  color: green;
+  font-size: 1em;
+}
+
 .sync-panel .sync-now {
   animation: blink 2s ease-out infinite;
 }

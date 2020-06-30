@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { call, put, takeLeading } from 'redux-saga/effects'
 import actionTypes from '../constants/actionTypes'
 import provider from '../utils/provider'
 
@@ -11,5 +11,5 @@ export function* toggleAllTodo() {
 }
 
 export function* watchToggleAllTodo() {
-  yield takeLatest(actionTypes.TOGGLE_ALL_TODO_REQUEST, toggleAllTodo)
+  yield takeLeading(actionTypes.TOGGLE_ALL_TODO_REQUEST, toggleAllTodo)
 }
