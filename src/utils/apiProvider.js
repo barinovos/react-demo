@@ -5,8 +5,14 @@ const CancelToken = axios.CancelToken
 const source = CancelToken.source()
 
 export default ({ apiURL, apiRootRoute, routes }) => ({
-  getTodos: () =>
-    axios.get(apiURL + apiRootRoute + routes.todos).then(resp => resp.data),
+  getTodos: (filterText = '') =>
+    axios
+      .get(
+        `${apiURL + apiRootRoute + routes.todos}${
+          filterText ? '?text=' + encodeURIComponent(filterText) : ''
+        }`
+      )
+      .then(resp => resp.data),
   addTodo: text =>
     axios
       .post(apiURL + apiRootRoute + routes.todos, { text })

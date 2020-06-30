@@ -6,13 +6,15 @@ import {
   syncBg,
   cancelSyncBg,
   addTodoBatch,
+  searchTodos,
 } from '../actions'
 import SyncPanel from '../components/SyncPanel'
 
-const mapStateToProps = ({ syncNowState, syncTaskStatus }) => ({
+const mapStateToProps = ({ syncNowState, syncTaskStatus, search }) => ({
   isSyncNow: syncNowState.started,
   isSyncStopped: syncNowState.stopped,
   syncTaskStatus,
+  search,
 })
 
 const mapDispatchToProps = dispatch =>
@@ -23,6 +25,7 @@ const mapDispatchToProps = dispatch =>
       syncBg,
       cancelSyncBg,
       addTodoBatch,
+      searchTodos,
     },
     dispatch
   )

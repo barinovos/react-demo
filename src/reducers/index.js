@@ -6,6 +6,7 @@ import error from './error'
 import congrats from './congrats'
 import syncNowReducer from './syncNow'
 import syncBgReducer from './syncBg'
+import searchReducer from './search'
 
 export default combineReducers({
   todos,
@@ -15,4 +16,5 @@ export default combineReducers({
   congrats,
   syncNowState: syncNowReducer,
   syncTaskStatus: syncBgReducer,
+  search: searchReducer,
 })

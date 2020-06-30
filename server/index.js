@@ -30,7 +30,22 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 // Get all items
 app.get(
   todoRoute,
-  withTimeout((req, res) => res.status(200).send(db.get(todos).value()))
+  withTimeout((req, res) => {
+    const search = req.query && req.query.text
+    const result = db
+      .get(todos)
+      .sortBy('createdAt')
+      .value()
+    res
+      .status(200)
+      .send(
+        search
+          ? result.filter(t =>
+              t.text.toLowerCase().includes(search.toLowerCase())
+            )
+          : result
+      )
+  })
 )
 
 // Create item
@@ -53,7 +68,12 @@ app.post(
     if (todo) {
       return res.status(409).send(`ToDo ${text} already exists`)
     }
-    const newTodo = { id: uuid(), text: req.body.text, completed: false }
+    const newTodo = {
+      id: uuid(),
+      text: req.body.text,
+      completed: false,
+      createdAt: Date.now(),
+    }
     db.get(todos)
       .push(newTodo)
       .write()

@@ -43,4 +43,9 @@ export default keyMirror({
   BG_SYNC_DONE: null,
   BG_SYNC_CANCELLED: null,
   BG_SYNC_FAILED: null,
+
+  SEARCH_TODOS: null,
+  SEARCH_TODOS_PROGRESS: null,
+  SEARCH_TODOS_DONE: null,
+  SEARCH_TODOS_FAILED: null,
 })

@@ -10,8 +10,11 @@ const SyncPanel = ({
   cancelSyncBg,
   syncTaskStatus,
   addTodoBatch,
+  searchTodos,
+  search,
 }) => {
   const [randomCount, setRandomCount] = useState(5)
+  const [filterText, setFilterText] = useState('')
 
   const onMakeBatchCall = () => {
     const dateHash = Date.now()
@@ -74,6 +77,27 @@ const SyncPanel = ({
         />
         <button onClick={onMakeBatchCall}>New {randomCount} ToDos</button>
       </div>
+      <div className="block">
+        <h3>Search for ToDos</h3>
+        <input
+          type="text"
+          placeholder="Search ToDos..."
+          value={filterText}
+          onChange={ev => {
+            setFilterText(ev.target.value)
+            searchTodos(ev.target.value)
+          }}
+        />
+        {search.inProgress && <div className="sync-now">Searching...</div>}
+        {search.failed && <p>Search failed</p>}
+        {Boolean(search.result && search.result.length) && (
+          <ol>
+            {search.result.map(todo => (
+              <li key={todo.id}>{todo.text}</li>
+            ))}
+          </ol>
+        )}
+      </div>
     </div>
   )
 }
@@ -90,6 +114,12 @@ SyncPanel.propTypes = {
     progress: PropTypes.number,
   }),
   addTodoBatch: PropTypes.func,
+  searchTodos: PropTypes.func,
+  search: PropTypes.shape({
+    inProgress: PropTypes.bool,
+    result: PropTypes.array,
+    failed: PropTypes.bool,
+  }),
 }
 
 export default SyncPanel

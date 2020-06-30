@@ -11,6 +11,7 @@ import { watchDailyTarget } from './congrats'
 import { syncNowSaga } from './syncNow'
 import { syncBgSaga } from './syncBg'
 import { watchAddTodoBatch } from './addTodoBatch'
+import { watchSearch } from './searchTodos'
 
 // notice how we now only export the rootSaga
 // single entry point to start all Sagas at once
@@ -28,6 +29,7 @@ export default function* rootSaga() {
     syncNowSaga,
     syncBgSaga,
     watchAddTodoBatch,
+    watchSearch,
   ]
 
   yield all(

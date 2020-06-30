@@ -87,3 +87,8 @@ export const syncBgSuccess = result => ({
 export const cancelSyncBg = () => ({
   type: actionTypes.CANCEL_BG_SYNC,
 })
+
+export const searchTodos = filterText => ({
+  type: actionTypes.SEARCH_TODOS,
+  payload: filterText,
+})

@@ -1,3 +1,14 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "id": "ffdc7c12-5507-436c-95cf-28fa1ee072a0",
+      "text": "my first one",
+      "completed": false
+    },
+    {
+      "id": "492f7b52-bc32-4aa8-b8ce-25080c4ea2d3",
+      "text": "my 2nd one",
+      "completed": false
+    }
+  ]
 }
